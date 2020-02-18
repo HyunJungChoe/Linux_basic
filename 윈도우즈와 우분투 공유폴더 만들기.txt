@@ -1,0 +1,10 @@
+<윈도우즈와 우분투 공유폴더 만들기>
+
+1. D드라이브 ubuntu_share 폴더 만들어 > 속성 > 송유 > Everyone 추가
+2. 네트워크 및 공유센터 > 모든 네트워크 > 암호공유 끄기
+3. VMware > 옵션 > Options > 쉐어 폴더 > Always~ > ubuntu_share 폴더 
+4. 우분투 실행후 > 메뉴 > Manage > Install Vmware Tools 
+5. 파일 > (CD모양 옆) Vmware Tool 박스 복사 > 홈 붙여넣기 
+6. 터미널 > tar zxvfp vmware~~~ tar.gz > sudo ./vmware-install.pl
+7. 엔터 또는 yes
+
