@@ -1,0 +1,138 @@
+day1
+
+설정 -  장치 - 해상도
+
+ctrl+alt+t : 터미널
+
+ctrl+shift+t : 같은창 터미널
+
+ctrl+shift+ (+)  : 글씨크기확장
+
+ctlr+ (-) : 글씨크기축소
+
+alt + c :마우스가 없어졌을때
+
+ctrl+ l : clear
+
+pwd : print working directory
+
+date 
+
+cd : change directory
+
+ls -F : 디렉토리와 파일, 심볼릭링크 파일(바로가기)
+
+ls : list
+
+history : 명령어 히스토리
+
+!히스토리숫자
+
+!! : 가장최근명령 한번더
+
+/ : 최상위 디렉토리 명
+
+/home/user00 : 사용자디렉토리
+
+mkdir 디렉토리명:
+
+man 명령어 : 명령어 설명
+
+
+위쪽화살표 : 이전명령들이 순서
+
+mkdir -p : 하위디렉토리 생성
+
+cd ~ : ~ 사용자 홈을 말함
+
+tree : 디렉토리목록을 보여준다.
+
+file 명 : 명의 성격
+
+touch a.txt : 빈파일 생성
+
+ls -al : 파일의 속성
+
+rmdir 명: 명 디렉토리 삭제
+
+rm -rf 명 : 비어있지 않은 디렉토리 삭제
+
+mv a.txt 디렉토리명 : 파일이동
+mv a.txt aaa.txt : 이름바꾸기
+
+cp 디/파일 디/파일2 :허가거부
+
+sudo : 잠시 admin권한얻는
+
+/ : 루트디렉토리
+
+. : 현재디렉토리
+
+.. : 상위디렉토리
+
+
+ls -a : 숨긴파일
+
+tab 2번치면 : 접두부가 같은 파일이나 디렉토리 목록을 보여준다.
+
+cat -n 파일명 : 행번호를 붙히면서 보여준다. 짧은 파일볼때 편한
+
+
+more 파일 : b <-  -> space
+       /talk  : talk 문자열 찾기
+
+less 파일
+
+
+man less : less 명령어 설명
+ 한줄씩 k <- -> j
+
+tail a.txt : 끝에 10줄 (-n 줄)
+head a.txt : 처음 10줄
+
+
+링크만들기
+1.하드링크(다른파일시스템 X, 디렉토리 X )
+2.소프트링크
+
+ln a.txt a.txt.ln
+
+ctrl + u : 한줄 모두 삭제
+ctrl + w : 한단어 삭제
+
+
+> : 출력리다이렉트
+>> : 추가를 위한 출력 리다이렉트
+
+lsattr work
+chattr +i work
+chattr -i work
+
+
+파일찾기 : find 찾을디렉토리 옵션 파일명
+문자열찾기 : grep 문자열 파일
+
+
+| : 파이프라인 : 명령어의 처리를 다음 명령에 전달
+
+wc -l : 라인수를 표시한다.
+
+passwd : 자기자신을 비번 바꿀때
+sudo passwd root : root의 비번을 바꿀때
+
+ctrl+d , exit, x 버튼(우측상단) 터미널 끄는 방법 : .bash_history 터미널 쳐던 명령어가 저장된다.
+
+bsh -> c쉘, 콘쉘 ->
+bash : 본어게인쉘(born again shell)
+
+
+real : 경과시간 프로그램시작 ~ 끝
+user + sys : 사용시간  : 유저라이브러리 +
+  시스템콜
+
+
+
+
+
+
+
