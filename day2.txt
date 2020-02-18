@@ -1,0 +1,228 @@
+1. 윈도우에서 공유폴더 만들기
+2. vmware option에서 share폴더 선택
+3. 리눅스 부팅 ->player-> manage->install vmware toos
+4. cd롬에서 vmware~~~ tar.gz을 홈으로 복사
+5. tar zxvfp VM~~~ tar.gz
+6. sudo ./vmware-install.pl
+7. /mnt/hgfs/요기에 share폴더가 있느지 확인
+8. 리눅스 재부팅 - 복사 , 붙여넣기
+
+윈도우즈와 우부투 공유폴더 만들기
+
+vim 편집기
+
+마지막행 모드 <->명령 <-> 편집모드
+  : ? /          esc      aoiAOI
+
+
+vi편집기
+
+vi 엔터
+esc :q
+
+
+///////////////////////////////////////////
+
+vim main.c  : 명령모드로 진입
+i , a, o : 편집모드
+
+명령모드에서 : 콜론을 누르면 
+마지막행모드로 간다.
+:set nu, set list , set showmode
+
+ese 명령모드로 가는 것
+
+:wq! 저장,종료, 강제
+
+명령모드에서 
+복붙 yy -> p
+삭제 dd
+단어삭제  dw
+실행취소 u
+
+마지막행모드
+w은 저장
+q는 종료
+e는 전체취소
+
+잠깐 쉘명령어 날리기
+!ls  (!뒤에 명령어)
+길게 쉘로 나가기
+sh  -> 돌아오기 exit
+
+마지막행모드
+커서라인 s/이전/새로운문자열/
+모두바꾸기 %s/이전/새로운문자열/g
+
+커서기준 왼쪽 ? 
+커서기준 오른쪽 /
+
+
+shift+zz(대문자ZZ)를 누르면 저장종료..
+
+ctrl+z  문제 발생 fg로 해결
+
+
+:r 파일명 : 커서가위치한 칸 아래도 파일을 읽어옴
+
+
+vi main.c를 열어서
+stdarg.txt파일을 마지막행 모드로
+ : r 파일명
+ 형태로 읽어드린다.
+
+%s/va_list/va_list2/g 로 모든 va_list
+를 va_list2로 바꾼다.
+
+main.i 파일을 열어 함수 콜스택의 구조를 이해한다
+  
+
+글자크기 크게 : ctrl + shift +  +(plus)
+글자크기 작게 : ctrl +  -(minus)
+
+프롬프트 변경 PS1="\u \w"
+
+
+ubuntu_share폴더에 있는 파일을
+현재 디렉토리로 복사하여
+열린 파일안에 삽입한다.
+
+vim main.c
+
+마직막행모드 - : ? /
+:r  day2_arg.txt   -  커서가 있는곳에 불러옴
+
+:wq! 저장하고 나가기
+
+gcc main.c
+
+vim main.c
+
+%s/va_list/va_list2/g 
+
+:wq!
+
+gcc main.c   -  에러가 발생하지 않으면
+
+
+
+
+ cp /mnt/hgfs/ubuntu_share/ ~/
+
+
+ls main.c abc 1>ok.txt 2>err.txt
+
+ls main.c abc 1>total.txt 2>&1
+
+
+
+vim편집기는 홈디렉토리에 있는
+.exrc 파일을 보고 연다.
+(사용자가 만들어주는 파일 : .exrc)
+
+
+alias rm='rm -i'
+
+unalias  rm  : 을 삭제
+
+u : 유저
+g : 그룹
+o : other
+
+a : all
+
+chmod 777 v.txt
+
+chmod o+wx v.txt
+
+setUID : 4 실행시 - 소유자권
+
+setGID : 3 실행시  - 그룹권
+sticky bit: 1 - 누구나 이디렉토리에 파일생성
+
+유저생성과 삭제 수정
+  635  sudo adduser : 자동으로 홈과 비번 등등등
+ 
+  641  sudo useradd user03
+
+  646  sudo passwd user03  : 명시적 비번
+
+ 
+656  sudo chown user03:user03 user03/ : 명시적 홈디렉토리
+ 
+  658  sudo usermod -d /home/user03 user03 : ??? 명령이 안먹혔다.
+
+
+
+
+  671  sudo usermod -l user22 user02 : 02유저를 22로 바꾼다.
+
+  673  sudo usermod -u 1030 user22 : 22의 uid 를1030 로 바꾼다.
+
+
+  679  sudo userdel -r user01
+
+
+  690  sudo find / -user 1001 -exec rm -rf {} \;
+
+
+  705  sudo addgroup --gid 4444 gggg4 : 생성
+  706  sudo groupmod -g 7777 gggg4 : gid를 4444에서 7777로
+
+  708  tail /etc/group  : 그룹보기
+
+  710  sudo groupmod -n g4g4  gggg4  : 그룹명 바꾸기
+ 
+
+  716  sudo gpasswd -a user99 gggg4 : 그룹에 유저 추가
+  717  sudo gpasswd -d user99 gggg4 : 그룹에 유저 삭제
+
+  718  sudo gpasswd gggg4 :그룹에 암호
+ 
+  721  sudo groupdel gggg4 : 그룹 삭제
+
+
+악의적인 사용자
+
+유저와 그룹
+
+================
+
+ps : 프로세스목록
+
+ps -f
+
+
+top
+
+nice -20 ~19
+
+ root (-20 ~ 19)
+  user (0 ~ 19)
+
+
+
+sudo apt install net-tools
+sudo apt install xinetd
+sudo apt install telnet
+sudo vi /etc/xin
+ifconfig
+
+192.168.153.128
+
+telnet  192.168.153.128
+
+윈도우 기능 켜기/끄기 
+telnet client선택
+실행창에 telnet ip
+
+
+
+
+
+
+
+
+
+
+
