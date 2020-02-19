@@ -1,0 +1,4 @@
+tar cvf main.tar main.o // main.o 파일을 새로 압축
+tar uvf main.tar dp.c // 압축 파일 안에 dp.c추가
+tar xvf main.tar     // 압축 풀기 
+tar tvf main.tar    //압축 안에 보기 

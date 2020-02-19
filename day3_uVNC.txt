@@ -1,0 +1,55 @@
+$ sudo apt install vnc4server
+$ sudo apt install xfce4
+
+--
+(방화벽 끄기)
+$ sudo ufw disable
+
+----
+$ cd /.vnc
+$ vim xstartup
+
+
+#!/bin/sh
+
+# Uncomment the following two lines for normal desktop:
+unset SESSION_MANAGER
+unset DBUS_SESSION_BUS_ADDRESS
+
+# exec /etc/X11/xinit/xinitrc
+
+#[ -x /etc/vnc/xstartup ] && exec /etc/vnc/xstartup
+#[ -r $HOME/.Xresources ] && xrdb $HOME/.Xresources
+xsetroot -solid grey
+vncconfig -iconic &
+x-terminal-emulator -geometry 80x24+10+10 -ls -title "$VNCDESKTOP Desktop" &
+x-window-manager &
+startxfce4 &
+
+---
+
+$ vncserver -kill :1
+$ vncserver :1 -geometry 800x600 -depth 24
+
+---
+New 'user00-virtual-machine:1 (user00)' desktop is user00-virtual-machine:1
+
+Starting applications specified in /home/user00/.vnc/xstartup
+Log file is /home/user00/.vnc/user00-virtual-machine:1.log
+
+---
+uvnc 다운
+
+(vncserver :2 -geometry 800x600 -depth 24) 인 경우
+192.168.159.128:2
+
+-----
+sudo apt install vinagre
+vinagre 아이피:2
+
+-----
+
+ftp 만들기
+
+
+
