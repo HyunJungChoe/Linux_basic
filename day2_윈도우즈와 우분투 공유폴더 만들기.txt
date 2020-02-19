@@ -8,3 +8,4 @@
 6. 터미널 > tar zxvfp vmware~~~ tar.gz > sudo ./vmware-install.pl
 7. 엔터 또는 yes
 
+
