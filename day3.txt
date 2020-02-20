@@ -1,0 +1,198 @@
+sudo apt-get update
+
+sudo apt-get upgrade
+
+sudo apt install make
+
+update : 새로운 패키지정보
+upgrade : 패키지 업그레이드
+install
+remove
+autoclean
+
+make 
+clean :  디스크공간확보
+check
+
+
+
+sudo passwd root : 루트패스워드설정
+
+su    : user00의 환경설정을 가지고 
+         루트로 들어감
+
+   -  : 환경설정 따로 들어가기
+su -  : 루트로 로그인
+exit : 다시로 user00으로 복귀
+
+
+
+make file의 이해
+
+4_재귀: 다른 디렉토리에 있는 Makefile을 호출할수 있다.
+5_ : 은 일단 패스함
+6_ : 자동으로 폴더안쪽이나 현재폴더에 파일을 검색한다.
+7_ : 골라서 인스톨하는것
+8_ : 디렉토리명에서 디렉토리를 제외하고 파일만 골라서 처리 하는 함수 notdir
+
+
+
+
+
+:w dp.c  //다른이름으로 저장
+
+내가
+gcc -c main.c
+
+라이브러리 제공자
+gcc -c dp.c
+ar rcv libxyz.a dp.o   
+lib(xyz).a
+
+내가
+gcc -o run.exe main.o -L. -lxyz
+
+-L:라이브러리가 있는 PATH
+-l:라이브러리 이름
+  941  gcc -fPIC -c dp.c
+  942  gcc -shared -o libxyz.so dp.o
+
+  944  gcc -c main.c
+  945  gcc -o run.exe main.o -L. -lxyz
+  947  ./run.exe  :실행이 안된다.
+
+
+
+  948  cd /etc/ld.so.conf.d
+  950  sudo touch xyz_lib.conf
+  951  cd -
+
+
+  953  sudo mv libxyz.so /usr/lib
+  954  sudo ldconfig  //ld.so.cache 업데이트
+  955  ./run.exe 
+
+dynamic loading은 다음에
+
+변수
+쉘변수 : 쉘 : 지역변수
+환경변수 : 쉘+ 서브쉘: 전역변수
+
+env : 환경변수(전역변수)
+set : 환경변수 + 쉘변수  + 함수
+
+
+
+시스템환경변수
+/etc/profile : 모든쉘이참고 시스템전역변수, 쉘 초기화
+/etc/bashrc : 쉘함수와  alias
+/etc/bash.bashrc : 기본프롬프트, sudo힌트
+
+사용자환경수
+.exrc : vim편집기의 설정
+.bash.bashrc : 유저환경설정
+.bashrc  : alias 와  history,크기
+.bash_history :
+.bash_logout : 터미널 닫을때
+
+sleep 60 fg -> ^z -> bg
+
+jobs는 백그라운드 프로세스를 보여준다.
+
+kill -9 PID
+
+sleep 60 & ->  jobs ->  fg 번호
+
+tar cvf
+    uvf
+    tvf
+    xvf
+
+묶음압출  압축   풀기    보기  확장자
+
+tar czvf gzip - gunzip  zcat   .gz
+
+tar cjvf bzip2 - bunzip2 bzcat  .bz
+
+ ========================================
+vnc
+ ========================================
+ VNC(virtual network computing)
+
+리눅스에서 vnc서버 설저어 vnc 클라이언트로 접속
+ 리눅스에서는 vnc 패키지를 제공한다.
+
+1. sudo apt install vnc4server : 서버설치
+ 데스크탑 관리자를 함게 설치 한다.
+2. sudo apt install xfce4 : 데스크톱 관리자
+
+3. vncserver  실행
+ 관련 스크립트 파이 암호는 홈밑에 .vnc 디렉터리에 생성
+4. ls .vnc
+
+위 vncserver를 실행하면 ./vnc/xstartup 파일이 생성되는데
+ 이를 수정해야한다.(이파일은 x윈도우를 동작시킬때 참조되는 파일이다.)
+5. vi ./vnc/xstartup
+ 685page 첫번째 그림 참조
+ 수정 후 저장
+unset SESSION_MANAGER
+ unset DBUS_SESSION_BUS_ADDRESS
+ # exec /etc/X11/xinit/xinitrc
+ #[ -x /etc/vnc/xstartup ] && exec /etc/vnc/xstartup
+ #[ -r $HOME/.Xresources ] && xrdb $HOME/.Xresources
+ xsetroot -solid grey
+ vncconfig -iconic &
+ x-terminal-emulator -geometry 80x24+10+10 -ls -title "$VNCDESKTOP Desktop" &
+ #x-window-manager &
+ startxfce4 &
+
+
+ 6. vncserver -kill :1
+ 7. vncserver :1 -geometry 800x600 -depth 24
+
+8. sudo ufw disable   방화벽 종료 5901번 부터 시작 포트
+========================================
+리눅스 client
+
+1. sudo apt install vinagre
+
+ifconfig 로 ip를 확인한다.
+2. vinagre 192.168.74.133:1 &
+암호를 물어보면 원격 데스크톱 보기 창이 보인다.
+
+----------------------------------------------------------
+윈도우용 client ( vnc )  ultraVNC Viewer
+
+
+ 3. http://www.uvnc.com/downloads/ultravnc.html
+ 192.168.74.133:1
+ ========================================
+파일 송수신을 위한 FTP 서버 설치하고 설정
+========================================
+리눅스 FTP서버 vsFTPD (very secure file transfer protocal daemon)
+
+1. sudo apt-get install vsftpd
+ ps -ef | grep vsftpd
+ telnet 0 21   정상동작 확인(220이 보인다.) 후 quit로 종료
+21: ftp포트번호다. 25:메일포트
+-----------------------------------------------
+클라이언트 설정 윈도우에서 cmd 창 열어보자
+
+ftp 192.168.  .    접속시도  암호/패스워드
+ 혹시 방화벽 물어보면 ok한다.
+
+========================
+
+ftp 192.168.153.128
+ 
+
+
+
+
+
+
+
+
+
+
+

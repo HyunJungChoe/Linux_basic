@@ -1,0 +1,13 @@
+<ftp 어나니머스> 
+ps -ef | grep vsftpd
+ sudo vim /etc/vsftpd.conf
+25번째줄 YES
+ sudo systemctl restart vsftpd
+ ip addr
+ ftp 192.168.159.128
+
+=====================
+
+
+
+

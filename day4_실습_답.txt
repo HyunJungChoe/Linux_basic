@@ -1,0 +1,120 @@
+======================
+디레토리 처리 실습
+======================
+mkdir linux_ex
+cd linux_ex/
+mkdir first
+cd first
+ pwd
+ mkdir one two three
+ cd one
+ mkdir tmp/test
+삭제되지 않음
+rmdir two three
+
+
+======================
+디렉토리 처리 실습2
+======================
+touch test.txt
+cp test.txt test2.txt
+mkdir backup
+mv test2.txt backup
+mv backup work
+디렉터리가 비어있지 않음  -> rm -rf work 
+alias rm='rm -i'
+
+======================
+리다이렉트  실습
+======================
+1. cp * ../
+2.
+3.
+
+//미완
+
+
+======================
+Chmod 실습
+======================
+touch test.txt
+ls -al
+chmod 666 test.txt
+chmod 664 test.txt
+chmod 644 test.txt
+chmod 444 test.txt
+chmod a+rwx test.txt
+chmod o+w,g-w test.txt
+chmod a-rwx test.txt
+
+
+======================
+검색 실습
+======================
+vim /etc/passwd 
+grep user00
+41 user00:x:1000:1000:user00,,,:/home/user00:/bin/bash
+
+sudo find . -name data
+
+
+======================
+백그라운드 포그라운드 처리 실습
+======================
+
+sleep 300 & 
+(확인 하기 jobs)
+ps -ef | grep sleep
+
+//미완
+
+
+======================
+그룹과 사용자 처리 실습
+======================
+sudo groupadd wednesday
+sudo groupadd monday
+sudo groupadd -g GID wednesday 3000
+sudo groupadd -g GID monday 5000
+
+sudo gpasswd -d user4 sunday
+sudo gpasswd -a user3 monday
+sudo groupdel monday
+sudo groupdel sunday
+
+//
+ 1218  sudo addgroup --gid 2900 wednesday
+ 1219  sudo addgroup --gid 3900 monday
+ 1220  sudo groupmod -n sunday wednesday
+ 1221  sudo groupmod -g 3000 sunday
+ 1222  sudo groupmod -g 5000 monday
+ 1223  sudo useradd user3
+ 1224  sudo useradd user4
+ 1226  tail -5 /etc/passwd
+ 1227  sudo gpasswd -a user3 sunday
+ 1228  sudo gpasswd -a user4 sunday
+ 1229  sudo gpasswd sunday
+ 1230  sudo gpasswd -d user4 sunday
+ 1231  sudo gpasswd -d user3 sunday
+ 1232  sudo gpasswd -a user3 monday
+ 1233  sudo groupdel monday
+ 1234  sudo groupdel sunday
+
+======================
+쉘변수와 환경변수 처리 실습
+======================
+
+//
+ 1203  TESTB=abc
+ 1204  export TESTB
+ 1205  bash
+ 1206  alias h=history
+ 1207  h > history.txt
+ 1208  unalias h
+ 1209  alias a=alias
+ 1210  a bb=ls
+ 1211  bb
+ 1212  unalias bb
+ 1213  history > history.h
+
+
