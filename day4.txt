@@ -1,0 +1,188 @@
+anonymous ftp만들기
+
+sudo vim /etc/vsftpd.conf
+
+anonymous_enable=YES
+
+웹서버 설치 
+sudo apt install apache2
+systemctl status apache2
+ps -ef | grep apache
+
+리스타트
+sudo systemctl restart vsftpd
+
+접속
+http://아이피/ 
+
+cd /var/www/html/index.html 을 수정
+혹은 myindex.html
+
+http://아이피/myindex.html
+
+
+http://아이피/   index.html
+
+-------------------
+telnet 127.0.0.1 80
+GET index.html HTTP/1.0
+
+사용자(user)마다 부여하는 페이지
+cd /etc/apache2/mods-available/
+
+sudo vim userdir.conf
+
+cd ../mods-enabled/
+sudo ln -s ../mods-available/userdir.conf userdir.conf
+sudo ln -s ../mods-available/userdir.load userdir.load
+
+sudo systemctl restart apache2
+
+cd
+mkdir public_html
+cd public_html/
+
+http://127.0.0.1/~user00/my.html
+
+
+리눅스 끼리 파일 교환
+
+nfs(network file system)
+서버쪽
+ sudo apt-get autoremove nfs-common
+
+sudo apt-get install nfs-common
+sudo apt-get install nfs-kernel-server rpcbind
+
+ 1285  sudo vim /etc/exports 
+		제일 밑에  /home/share  클라이언트 ip
+
+ 1286  sudo mkdir /home/share
+ 1287  sudo chmode 777 /home/share/
+ 1288  sudo chmod 777 /home/share/
+ 1289  sudo exportfs
+ 1290  sudo systemctl restart nfs-kernel-server
+ 1291  sudo systemctl restart rpcbind
+ 1292  systemctl status nfs-kernel-server
+ 1293  history
+ 1294  sudo exportfs
+
+클라이언트쪽
+ 1295  sudo apt instaal nfs-common
+ 1298  sudo mkdir -p /home/user22/mnt
+ 1299  sudo mount -t nfs serverip:/home/share   /home/user2/mnt
+ 1300  df
+
+
+클라언트가 제부팅 되어도 계속 nfs를 마운트하고 싶을때
+vi /etc/fstab
+서버아이피:/home/share  /mnt nfs fg. soft 1 2
+showmount -e 서버아이피
+
+
+윈도우와 리눅스간 공유 : 삼바
+서버 : 윈도우  --  클라이언트 : 리눅스
+192.168.1.11
+samba_share
+
+ipconfig /all 이더넷 어댑터 이더넷
+상태 - 네트워크 속성 :랜카드 ipv4
+
+
+ 1306  sudo apt install cifs-utils
+ 1307  mkdir /sambawin
+ 1308  sud mkdir /sambawin
+
+ 1328  sudo smbclient -L 192.168.1.11
+ 1329  sudo smbclient //192.168.1.11/samba_share -U root
+
+ 1333  sudo mount -t cifs -o vers=2.0 //192.168.1.11/samba_share /sambawin
+
+
+
+
+서버 : 리눅스 --  클라이언트 : 윈도우  
+
+sudo apt install samba
+
+ls /etc/samba
+
+sudo vim /etc/samba/smb.conf수정
+ 1455  sudo systemctl restart smbd
+ 1456  sudo systemctl restart nmbd
+ 1457  systemctl status smbd
+ 1458  systemctl status nmbd
+ 1460  sudo smbpasswd -a user00
+
+
+윈도우 클라이언트
+윈도우탐색기 -> 네트웍드라이브연결
+\\리눅스아이피\user00
+
+
+=========================
+oracle설치
+
+su - 
+
+/home/user00
+
+unzip ora*
+
+cd Disk1/
+
+apt-get install -y alien libaio1 unixodbc
+
+rpm파일을 변환 -> deb파일로
+alien --scripts -d ora*
+
+install을 해야한다. (apt : 통합 , dpkg : 개인버전)
+dpkg --install oracle*.deb
+
+/etc/init.d/oracle-xe configure
+포트:
+리스너:
+패스워드 2번:
+재부팅 : y
+
+오라클이 재부팅 후 메세지 확인
+Installation completed successfully.
+
+systemctl start oracle-xe
+systemctl status oracle-xe
+
+/etc/bash.bashrc 파일을 열어 가장 밑 라인에
+
+. /u01/app/oracle/product/11.2.0/xe/bin/oracle_env.sh
+
+입력 후 저장
+/etc/폴더 안에서 
+. bash.bashrc
+
+mkdir /oradata
+chmod 777 /oradata
+
+sqlplus 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
